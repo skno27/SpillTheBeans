@@ -8,16 +8,15 @@ export default function Home() {
       className="w-screen"
       style={{ position: "relative", minHeight: "100vh" }}>
       <Image
-        src="/assets/background_shot_gen.png"
+        src="/assets/stb_Main_wall_1.png"
         alt="Background Image, a shot of the bar area"
         fill
-        className="object-cover object-left"
+        className="object-cover object-center shadow-inner"
         // style={{ objectFit: "cover", zIndex: -1 }}
         priority
       />
       <div className="relative z-10">
-
-      <LandingPage />
+        <LandingPage />
       </div>
     </div>
   );
