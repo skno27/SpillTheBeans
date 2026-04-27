@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import React from "react";
+import React, { useState, type ReactNode } from "react";
 
 const BUSINESS = {
   name: "Spill The Beans",
@@ -23,13 +22,10 @@ export default function LandingPage() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <div className="min-h-screen max-w-full bg-[#1b120d] text-[#f7ede1]">
+    <div className="min-h-screen max-w-full text-[#f7ede1]">
       <section className="relative min-h-screen overflow-hidden">
-        {/* Background mood layer. Replace this later with a real cafe photo when you have one. */}
-        <div className="absolute inset-0 bg-[#0f0906]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(209,139,76,0.22),transparent_28%),radial-gradient(circle_at_75%_20%,rgba(91,45,24,0.42),transparent_34%),linear-gradient(90deg,rgba(10,6,4,0.96),rgba(27,18,13,0.88)_45%,rgba(27,18,13,0.72))]" />
-        <div className="absolute inset-x-0 bottom-0 h-44 bg-[linear-gradient(180deg,transparent,rgba(67,35,19,0.78))]" />
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-[linear-gradient(180deg,rgba(81,43,22,0.3),rgba(39,20,11,0.98))]" />
+        {/* Soft readability overlay only. The real background image comes from page.tsx */}
+        <div className="absolute inset-0 " />
 
         {/* Mobile Header Banner */}
         <div className="fixed left-0 right-0 top-0 z-50 border-b border-[#ead9c9]/20 bg-[#f7ede1] text-[#1b120d] shadow-lg shadow-black/10 md:hidden">
@@ -114,7 +110,7 @@ export default function LandingPage() {
         <div
           id="top"
           className="relative mx-auto hidden max-w-7xl px-6 py-8 md:block">
-          <header className="flex items-center justify-between rounded-full border border-white/10 bg-black/20 px-5 py-3 backdrop-blur-md">
+          <header className="flex items-center justify-between rounded-full border border-white/10 bg-black/25 px-5 py-3 backdrop-blur-md">
             <a
               href="#top"
               className="flex items-center gap-3">
@@ -159,7 +155,6 @@ export default function LandingPage() {
 
         <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-24 sm:px-6 md:pb-20 md:pt-8">
           <div className="grid items-center gap-8 py-10 md:grid-cols-[1.05fr_0.95fr] md:py-20 lg:gap-14">
-            {/* Hero: first thing visitors see */}
             <div>
               <div className="mb-5 inline-flex items-center rounded-full border border-[#d8b08a]/30 bg-[#3a2418]/70 px-4 py-2 text-xs font-semibold text-[#f0d4bc] shadow-lg shadow-black/20 backdrop-blur sm:text-sm">
                 Coffee • Cocoa • Culture
@@ -175,30 +170,30 @@ export default function LandingPage() {
                 and a welcoming space made for real conversation.
               </p>
 
-              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap">
+              <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap ">
                 <a
                   href={BUSINESS.directionsUrl}
                   className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#d18b4c] px-5 py-3 text-sm font-black text-[#22140d] shadow-xl shadow-black/30 transition hover:-translate-y-0.5 sm:px-6 sm:text-base">
                   <MapPinIcon />
                   Get Directions
                 </a>
+
                 <a
                   href="#menu"
-                  className="inline-flex items-center justify-center rounded-2xl border border-[#d18b4c]/50 bg-black/15 px-5 py-3 text-sm font-bold text-[#f7ede1] backdrop-blur transition hover:bg-white/10 sm:px-6 sm:text-base">
+                  className="inline-flex items-center justify-center rounded-2xl border border-[#d18b4c]/50 bg-black/20 px-5 py-3 text-sm font-bold text-[#f7ede1] backdrop-blur transition hover:bg-white/10 sm:px-6 sm:text-base">
                   View Menu
                 </a>
                 <a
                   href={BUSINESS.phoneHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 text-sm font-bold text-[#f4c27e] underline decoration-[#d18b4c] decoration-2 underline-offset-8 transition hover:text-white sm:px-2 sm:text-base">
-                  <PhoneIcon />
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl px-1 py-3 text-sm font-bold text-[#f4c27e] underline decoration-[#d18b4c] decoration-2 underline-offset-8 transition hover:text-white sm:text-base">
                   Call Now
+                  <PhoneIcon />
                 </a>
               </div>
             </div>
 
-            {/* Social proof + visit utility panel */}
             <div className="grid gap-4 sm:gap-5">
-              <section className="rounded-[1.75rem] border border-[#d8b08a]/20 bg-[#20130d]/90 p-5 shadow-2xl shadow-black/30 backdrop-blur sm:p-6">
+              <section className="rounded-[1.75rem] border border-[#d8b08a]/20 bg-[#20130d]/85 p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <p className="text-xs font-black uppercase tracking-[0.24em] text-[#d18b4c]">
@@ -208,6 +203,7 @@ export default function LandingPage() {
                       Reviews
                     </h2>
                   </div>
+
                   <div className="rounded-full bg-[#d18b4c]/15 px-3 py-1 text-sm font-bold text-[#f4c27e]">
                     Top rated
                   </div>
@@ -237,10 +233,12 @@ export default function LandingPage() {
 
               <section
                 id="visit"
-                className="rounded-[1.75rem] border border-[#d8b08a]/20 bg-[#26160f]/90 p-5 shadow-2xl shadow-black/25 backdrop-blur sm:p-6">
+                // className="rounded-[1.75rem] border border-[#d8b08a]/20 bg-[#26160f]/85 p-5 shadow-2xl shadow-black/25 backdrop-blur-md sm:p-6">
+                className="sm:p-6">
                 <p className="text-xs font-black uppercase tracking-[0.24em] text-[#d18b4c]">
                   Visit today
                 </p>
+
                 <h2 className="mt-2 text-2xl font-black text-white">
                   Make the stop easy
                 </h2>
@@ -278,10 +276,10 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
+      {/* --------------------------------------------- DEBUG --- DEBUG --- strange line is here ----------------------------------------- */}
       <section
         id="menu"
-        className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+        className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#d8b08a] sm:text-sm">
@@ -291,6 +289,7 @@ export default function LandingPage() {
               Comfort in every cup and bite
             </h2>
           </div>
+
           <p className="max-w-2xl text-sm leading-6 text-[#d5c1b3] sm:text-base">
             Built around deep roast aromas, smooth chocolate accents, and the
             kind of menu that makes people stay a little longer.
@@ -317,15 +316,17 @@ export default function LandingPage() {
           ].map((item) => (
             <div
               key={item.name}
-              className="rounded-[1.75rem] border border-white/10 bg-white/5 p-5 shadow-xl shadow-black/20 sm:p-6">
+              className="rounded-[1.75rem] border border-white/10 bg-[#1b120d]/75 p-5 shadow-xl shadow-black/20 backdrop-blur-md sm:p-6">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <h3 className="text-xl font-black text-white sm:text-2xl">
                   {item.name}
                 </h3>
+
                 <span className="w-fit rounded-full bg-[#d18b4c] px-3 py-1 text-sm font-black text-[#26160f]">
                   {item.price}
                 </span>
               </div>
+
               <p className="mt-4 text-sm leading-6 text-[#dbc7b9] sm:text-base sm:leading-7">
                 {item.desc}
               </p>
@@ -336,15 +337,17 @@ export default function LandingPage() {
 
       <section
         id="story"
-        className="mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16">
+        className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16">
         <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03))] p-6 shadow-2xl shadow-black/20 sm:p-8">
+          <div className="rounded-[2rem] border border-white/10 bg-[#1b120d]/75 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#d8b08a] sm:text-sm">
               Our Story
             </p>
+
             <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl md:text-4xl">
               More than a café. A place to gather, create, and exhale.
             </h2>
+
             <p className="mt-6 max-w-3xl text-base leading-7 text-[#e3d4c9] sm:text-lg sm:leading-8">
               Spill The Beans was imagined as a neighborhood staple with
               personality — where roasted beans and chocolate feel instantly
@@ -355,10 +358,11 @@ export default function LandingPage() {
 
           <div
             id="vibe"
-            className="rounded-[2rem] border border-[#d8b08a]/15 bg-[#24150f] p-6 shadow-2xl shadow-black/20 sm:p-8">
+            className="rounded-[2rem] border border-[#d8b08a]/15 bg-[#24150f]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#d8b08a] sm:text-sm">
               Atmosphere
             </p>
+
             <div className="mt-5 space-y-4">
               {[
                 "Notes of roasted coffee, cocoa, and warm sugar in the air",
@@ -382,16 +386,18 @@ export default function LandingPage() {
 
       <section
         id="social"
-        className="mx-auto max-w-7xl px-4 py-10 pb-16 sm:px-6 md:py-16">
-        <div className="rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,#2e1911,#1b120d)] p-6 sm:p-10">
+        className="relative mx-auto max-w-7xl px-4 py-10 pb-16 sm:px-6 md:py-16">
+        <div className="rounded-[2rem] border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-10">
           <div className="flex flex-col items-center gap-6 text-center">
             <div>
               <p className="text-xs font-black uppercase tracking-[0.24em] text-[#d8b08a] sm:text-sm">
                 Stay Connected
               </p>
+
               <h2 className="mt-2 text-2xl font-black text-white sm:text-3xl">
                 Follow the aroma
               </h2>
+
               <p className="mt-3 max-w-2xl text-sm leading-6 text-[#d5c1b3] sm:text-base">
                 Get updates, café moments, and more guest-shared photos through
                 the official social pages.
@@ -426,7 +432,9 @@ export default function LandingPage() {
 function LogoMark({ small = false }: { small?: boolean }) {
   return (
     <div
-      className={`${small ? "h-9 w-9 text-[10px]" : "h-11 w-11 text-xs"} flex shrink-0 items-center justify-center rounded-full border border-[#d18b4c]/35 bg-[#3a2117] font-black leading-none text-[#f4dfcd] shadow-lg shadow-black/25`}>
+      className={`${
+        small ? "h-9 w-9 text-[10px]" : "h-11 w-11 text-xs"
+      } flex shrink-0 items-center justify-center rounded-full border border-[#d18b4c]/35 bg-[#3a2117] font-black leading-none text-[#f4dfcd] shadow-lg shadow-black/25`}>
       <span className="text-center">SB</span>
     </div>
   );
@@ -450,11 +458,13 @@ function ReviewRow({
       rel="noopener noreferrer"
       className="group grid grid-cols-[92px_1fr] items-center gap-4 py-4 transition hover:bg-white/[0.03] sm:grid-cols-[110px_1fr]">
       <div className={`text-2xl font-black ${accent}`}>{platform}</div>
+
       <div>
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xl font-black text-white">{rating}</span>
           <span className="tracking-[0.12em] text-[#d18b4c]">★★★★★</span>
         </div>
+
         <p className="mt-1 text-sm font-semibold text-[#ead9c9] underline decoration-[#d18b4c]/60 underline-offset-4 group-hover:text-white">
           See reviews on {platform} →
         </p>
@@ -470,7 +480,7 @@ function InfoRow({
   detail,
   href,
 }: {
-  icon: React.ReactNode;
+  icon: ReactNode;
   label: string;
   value: string;
   detail: string;
@@ -481,6 +491,7 @@ function InfoRow({
       <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#d18b4c]/10 text-[#d18b4c]">
         {icon}
       </div>
+
       <div>
         <p className="text-sm font-bold text-[#f4dfcd]">{label}</p>
         <p className="mt-1 font-semibold text-white">{value}</p>
