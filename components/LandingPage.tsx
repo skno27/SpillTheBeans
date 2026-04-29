@@ -1,6 +1,12 @@
 "use client";
 
 import React, { useState, type ReactNode } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faInstagram,
+  faXTwitter,
+  faFacebook,
+} from "@fortawesome/free-brands-svg-icons";
 
 const BUSINESS = {
   name: "Spill The Beans",
@@ -22,9 +28,9 @@ export default function LandingPage() {
   const closeMobileMenu = () => setMobileMenuOpen(false);
 
   return (
-    <div className="min-h-screen max-w-full text-[#080a1e]">
+    /* Soft readability overlay only. The real background image comes from page.tsx */
+    <div className="min-h-screen max-w-full text-[#080a1e] bg-black/45">
       <section className="relative min-h-screen overflow-hidden">
-        {/* Soft readability overlay only. The real background image comes from page.tsx */}
         <div className="absolute inset-0 " />
 
         {/* Mobile Header Banner */}
@@ -180,14 +186,14 @@ export default function LandingPage() {
 
                 <a
                   href="#menu"
-                  className="inline-flex items-center justify-center rounded-2xl border border-[#2e74b3]/50 bg-black/20 px-5 py-3 text-sm font-bold text-[#080a1e] backdrop-blur transition hover:bg-white/10 sm:px-6 sm:text-base">
+                  className="text-white inline-flex items-center justify-center rounded-2xl border border-[#2e74b3]/50 bg-black/20 px-5 py-3 text-sm font-bold shadow-lg shadow-black/40 backdrop-blur transition hover:bg-white/10 sm:px-6 sm:text-base">
                   View Menu
                 </a>
                 <a
                   href={BUSINESS.phoneHref}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl px-1 py-3 text-sm font-bold text-[#0b3d81] underline decoration-[#2e74b3] decoration-2 underline-offset-8 transition hover:text-white sm:text-base">
-                  Call Now
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl px-1 py-3 text-sm font-bold text-[#f4c27e] underline decoration-[#d18b4c] decoration-2 underline-offset-8 transition hover:text-white sm:text-base">
                   <PhoneIcon />
+                  Call Now
                 </a>
               </div>
             </div>
@@ -214,13 +220,13 @@ export default function LandingPage() {
                     platform="Yelp"
                     rating="4.9"
                     url={BUSINESS.yelpUrl}
-                    accent="text-[#00a5a0]"
+                    accent="text-[#ff5a5f]"
                   />
                   <ReviewRow
                     platform="Google"
                     rating="4.8"
                     url={BUSINESS.googleUrl}
-                    accent="text-[#bd7a0b]"
+                    accent="text-[#4285f4]"
                   />
                 </div>
 
@@ -276,7 +282,6 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-      {/* --------------------------------------------- DEBUG --- DEBUG --- strange line is here ----------------------------------------- */}
       <section
         id="menu"
         className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
@@ -407,15 +412,18 @@ export default function LandingPage() {
             <div className="grid w-full max-w-xl gap-3 sm:grid-cols-3">
               <SocialButton
                 href="https://www.instagram.com/urban_essentials_coffeecafe/"
+                icon={<InstagramIcon />}
                 label="Instagram"
               />
               <SocialButton
-                href={BUSINESS.yelpUrl}
-                label="Yelp"
+                href="https://x.com"
+                icon={<XIcon />}
+                label="X"
               />
               <SocialButton
-                href={BUSINESS.googleUrl}
-                label="Google"
+                href="https://www.facebook.com"
+                icon={<FacebookIcon />}
+                label="Facebook"
               />
             </div>
 
@@ -504,7 +512,7 @@ function InfoRow({
     return (
       <a
         href={href}
-        className="block rounded-2xl transition hover:bg-white/[0.03]">
+        className="block rounded-2xl transition hover:bg-white/3">
         {content}
       </a>
     );
@@ -513,14 +521,24 @@ function InfoRow({
   return content;
 }
 
-function SocialButton({ href, label }: { href: string; label: string }) {
+function SocialButton({
+  href,
+  label,
+  icon,
+}: {
+  href: string;
+  label: string;
+  icon: ReactNode;
+}) {
   return (
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="rounded-2xl border border-white/15 bg-white/5 px-5 py-3 text-sm font-black text-[#0b2032] transition hover:border-[#2e74b3]/60 hover:bg-[#2e74b3]/10 hover:text-white">
-      {label}
+      // className="text-7xl flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 p-4 text-white transition hover:border-[#2e74b3]/60 hover:bg-[#2e74b3]/10 hover:text-[#2e74b3]"
+      className="text-7xl flex items-center justify-center  text-white transition hover:text-[#2e74b3]"
+      aria-label={label}>
+      {icon}
     </a>
   );
 }
@@ -602,5 +620,32 @@ function ArrowRightIcon() {
         d="M5 12h14M13 5l7 7-7 7"
       />
     </svg>
+  );
+}
+
+function InstagramIcon() {
+  return (
+    <FontAwesomeIcon
+      icon={faInstagram}
+      className="h-6 w-6"
+    />
+  );
+}
+
+function XIcon() {
+  return (
+    <FontAwesomeIcon
+      icon={faXTwitter}
+      className="h-6 w-6"
+    />
+  );
+}
+
+function FacebookIcon() {
+  return (
+    <FontAwesomeIcon
+      icon={faFacebook}
+      className="h-6 w-6"
+    />
   );
 }
