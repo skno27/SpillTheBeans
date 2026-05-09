@@ -11,7 +11,8 @@ export default function Home() {
         src="/assets/stb_Main_wall_1.png"
         alt="Background Image, a shot of the bar area"
         fill
-        className="object-cover object-right shadow-inner"
+        // className="object-cover object-right shadow-inner"
+        className="object-cover object-[10%_78%] md:object-[78%_18%]"
         // style={{ objectFit: "cover", zIndex: -1 }}
         priority
       />

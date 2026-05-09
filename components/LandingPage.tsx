@@ -4,7 +4,7 @@ import React, { useState, type ReactNode } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
-  faXTwitter,
+  faTiktok,
   faFacebook,
 } from "@fortawesome/free-brands-svg-icons";
 
@@ -29,7 +29,7 @@ export default function LandingPage() {
 
   return (
     /* Soft readability overlay only. The real background image comes from page.tsx */
-    <div className="min-h-screen max-w-full text-[#080a1e] bg-black/45">
+    <div className="min-h-screen max-w-full text-[#f7ede1] bg-linear-to-b from-black/70 via-black/55 to-black/75">
       <section className="relative min-h-screen overflow-hidden">
         <div className="absolute inset-0 " />
 
@@ -42,10 +42,10 @@ export default function LandingPage() {
               onClick={closeMobileMenu}>
               <LogoMark small />
               <div>
-                <p className="text-xs font-black uppercase leading-none tracking-[0.22em] text-[#b4d7e7]">
+                <p className="text-xs font-black uppercase leading-none tracking-[0.22em] text-[#f4c27e]">
                   Spill The Beans
                 </p>
-                <p className="mt-1 text-xs text-[#90a8b9]">
+                <p className="mt-1 text-xs text-[#e7d3c3]">
                   {BUSINESS.subtitle}
                 </p>
               </div>
@@ -122,14 +122,14 @@ export default function LandingPage() {
               className="flex items-center gap-3">
               <LogoMark />
               <div>
-                <p className="text-sm font-black uppercase tracking-[0.28em] text-[#0b2032]">
+                <p className="text-sm font-black uppercase tracking-[0.28em] text-[#f4c27e]">
                   Spill The Beans
                 </p>
-                <p className="text-xs text-[#364d5f]">{BUSINESS.subtitle}</p>
+                <p className="text-xs text-[#e7d3c3]">{BUSINESS.subtitle}</p>
               </div>
             </a>
 
-            <nav className="flex items-center gap-7 text-sm font-medium text-[#152636]">
+            <nav className="flex items-center gap-7 text-sm font-medium text-[#f4c27e]">
               <a
                 href="#menu"
                 className="transition hover:text-white">
@@ -152,7 +152,7 @@ export default function LandingPage() {
               </a>
               <a
                 href={BUSINESS.phoneHref}
-                className="rounded-full border border-[#2e74b3]/70 px-5 py-2.5 font-semibold text-[#0b3d81] transition hover:bg-[#2e74b3]/10">
+                className="rounded-full border border-[#f4c27e]/50 px-5 py-2.5 font-semibold text-[#f4c27e] transition hover:bg-[#f4c27e]/10">
                 Call Now
               </a>
             </nav>
@@ -162,7 +162,7 @@ export default function LandingPage() {
         <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-24 sm:px-6 md:pb-20 md:pt-8">
           <div className="grid items-center gap-8 py-10 md:grid-cols-[1.05fr_0.95fr] md:py-20 lg:gap-14">
             <div>
-              <div className="mb-5 inline-flex items-center rounded-full border border-[#274f75]/30 bg-[#c5dbe7]/70 px-4 py-2 text-xs font-semibold text-[#0f2b43] shadow-lg shadow-black/20 backdrop-blur sm:text-sm">
+              <div className="mb-5 inline-flex items-center rounded-full border border-[#d18b4c]/30 bg-[#d18b4c]/15 px-4 py-2 text-xs font-semibold text-[#f4c27e] shadow-lg shadow-black/20 backdrop-blur sm:text-sm">
                 Coffee • Cocoa • Culture
               </div>
 
@@ -170,7 +170,8 @@ export default function LandingPage() {
                 A coffeehouse that smells like comfort and conversation.
               </h1>
 
-              <p className="mt-6 max-w-2xl text-base leading-7 text-[#1a2b38] sm:text-lg md:text-xl md:leading-8">
+              {/* <p className="mt-6 max-w-2xl text-base leading-7 text-[#1a2b38] sm:text-lg md:text-xl md:leading-8"> */}
+              <p className="mt-6 max-w-2xl text-base leading-7 text-[#f4c27e]  sm:text-lg md:text-xl md:leading-8">
                 Spill The Beans is a Black-owned coffee shop rooted in warmth,
                 craft, and community. Come for rich espresso, soft cocoa notes,
                 and a welcoming space made for real conversation.
@@ -179,14 +180,14 @@ export default function LandingPage() {
               <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap ">
                 <a
                   href={BUSINESS.directionsUrl}
-                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#2e74b3] px-5 py-3 text-sm font-black text-[#ddeaf2] shadow-xl shadow-black/30 transition hover:-translate-y-0.5 sm:px-6 sm:text-base">
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#d18b4c] px-5 py-3 text-sm font-black text-white shadow-xl shadow-black/30 transition hover:-translate-y-0.5 sm:px-6 sm:text-base">
                   <MapPinIcon />
                   Get Directions
                 </a>
 
                 <a
                   href="#menu"
-                  className="text-white inline-flex items-center justify-center rounded-2xl border border-[#2e74b3]/50 bg-black/20 px-5 py-3 text-sm font-bold shadow-lg shadow-black/40 backdrop-blur transition hover:bg-white/10 sm:px-6 sm:text-base">
+                  className="text-white inline-flex items-center justify-center rounded-2xl border border-[#f4c27e]/50 bg-black/20 px-5 py-3 text-sm font-bold shadow-lg shadow-black/40 backdrop-blur transition hover:bg-[#f4c27e]/10 sm:px-6 sm:text-base">
                   View Menu
                 </a>
                 <a
@@ -199,10 +200,10 @@ export default function LandingPage() {
             </div>
 
             <div className="grid gap-4 sm:gap-5">
-              <section className="rounded-[1.75rem] border border-[#274f75]/20 bg-[#dfeaf2]/85 p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-6">
+              <section className="rounded-[1.75rem] border border-white/10 bg-[#080a1e]/80 text-white p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#2e74b3]">
+                    <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e]">
                       Loved by locals
                     </p>
                     <h2 className="mt-2 text-2xl font-black text-white">
@@ -210,7 +211,7 @@ export default function LandingPage() {
                     </h2>
                   </div>
 
-                  <div className="rounded-full bg-[#2e74b3]/15 px-3 py-1 text-sm font-bold text-[#0b3d81]">
+                  <div className="rounded-full bg-[#d18b4c]/20 px-3 py-1 text-sm font-bold text-[#f4c27e]">
                     Top rated
                   </div>
                 </div>
@@ -230,7 +231,7 @@ export default function LandingPage() {
                   />
                 </div>
 
-                <p className="mt-5 rounded-2xl border border-[#274f75]/10 bg-white/[0.04] p-4 text-sm leading-6 text-[#182c3c]">
+                <p className="mt-5 rounded-2xl border border-[#274f75]/10 bg-white/[0.04] p-4 text-sm leading-6 text-[#e7d3c3]">
                   See what guests are sharing on Yelp and Google — photos,
                   reviews, and neighborhood love, all linked back to the
                   original platforms.
@@ -239,9 +240,8 @@ export default function LandingPage() {
 
               <section
                 id="visit"
-                // className="rounded-[1.75rem] border border-[#274f75]/20 bg-[#d9e9f0]/85 p-5 shadow-2xl shadow-black/25 backdrop-blur-md sm:p-6">
-                className="sm:p-6">
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#2e74b3]">
+                className="rounded-[1.75rem] border border-white/10 bg-[#080a1e]/80 p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-6">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e]">
                   Visit today
                 </p>
 
@@ -273,7 +273,7 @@ export default function LandingPage() {
 
                 <a
                   href={BUSINESS.directionsUrl}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#0b2032] px-5 py-3 text-sm font-black text-[#d5e8f0] transition hover:-translate-y-0.5 sm:w-auto">
+                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#d18b4c] px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 sm:w-auto">
                   Get directions
                   <ArrowRightIcon />
                 </a>
@@ -287,7 +287,7 @@ export default function LandingPage() {
         className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#274f75] sm:text-sm">
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
               Featured Menu
             </p>
             <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
@@ -295,9 +295,9 @@ export default function LandingPage() {
             </h2>
           </div>
 
-          <p className="max-w-2xl text-sm leading-6 text-[#2a3e4c] sm:text-base">
-            Built around deep roast aromas, smooth chocolate accents, and the
-            kind of menu that makes people stay a little longer.
+          <p className="max-w-2xl text-sm leading-6 sm:text-base text-white">
+            Deep roast aromas, smooth chocolate accents. The kind of menu that
+            makes people stay a little longer.
           </p>
         </div>
 
@@ -321,31 +321,30 @@ export default function LandingPage() {
           ].map((item) => (
             <div
               key={item.name}
-              className="rounded-[1.75rem] border border-white/10 bg-[#e4edf2]/75 p-5 shadow-xl shadow-black/20 backdrop-blur-md sm:p-6">
+              className="rounded-[1.75rem] border border-white/10 bg-[#1b120d]/80 p-5 shadow-xl shadow-black/20 backdrop-blur-md sm:p-6">
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <h3 className="text-xl font-black text-white sm:text-2xl">
                   {item.name}
                 </h3>
 
-                <span className="w-fit rounded-full bg-[#2e74b3] px-3 py-1 text-sm font-black text-[#d9e9f0]">
+                <span className="w-fit rounded-full bg-[#d18b4c] px-3 py-1 text-sm font-black text-white">
                   {item.price}
                 </span>
               </div>
 
-              <p className="mt-4 text-sm leading-6 text-[#243846] sm:text-base sm:leading-7">
+              <p className="mt-4 text-sm leading-6 text-[#e7d3c3] sm:text-base sm:leading-7">
                 {item.desc}
               </p>
             </div>
           ))}
         </div>
       </section>
-
       <section
         id="story"
         className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16">
         <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-[#e4edf2]/75 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#274f75] sm:text-sm">
+          <div className="rounded-[2rem] border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
               Our Story
             </p>
 
@@ -353,7 +352,7 @@ export default function LandingPage() {
               More than a café. A place to gather, create, and exhale.
             </h2>
 
-            <p className="mt-6 max-w-3xl text-base leading-7 text-[#1c2b36] sm:text-lg sm:leading-8">
+            <p className="mt-6 max-w-3xl text-base leading-7 text-[#e7d3c3] sm:text-lg sm:leading-8">
               Spill The Beans was imagined as a neighborhood staple with
               personality — where roasted beans and chocolate feel instantly
               familiar, and every detail invites people to slow down and
@@ -363,8 +362,8 @@ export default function LandingPage() {
 
           <div
             id="vibe"
-            className="rounded-[2rem] border border-[#274f75]/15 bg-[#dbeaf0]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
-            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#274f75] sm:text-sm">
+            className="rounded-[2rem] border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
+            <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
               Atmosphere
             </p>
 
@@ -377,9 +376,9 @@ export default function LandingPage() {
               ].map((line) => (
                 <div
                   key={line}
-                  className="flex gap-3 rounded-2xl border border-white/10 bg-white/5 p-4">
-                  <div className="mt-1 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#2e74b3]" />
-                  <p className="text-sm leading-6 text-[#172835] sm:text-base">
+                  className="flex gap-3 rounded-2xl border border-[#d18b4c]/20 bg-[#d18b4c]/10 p-4">
+                  <div className="mt-1 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#d18b4c]" />
+                  <p className="text-sm leading-6 text-[#e7d3c3] sm:text-base">
                     {line}
                   </p>
                 </div>
@@ -388,14 +387,13 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
-
       <section
         id="social"
         className="relative mx-auto max-w-7xl px-4 py-10 pb-16 sm:px-6 md:py-16">
-        <div className="rounded-[2rem] border border-white/10 bg-[#e4edf2]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-10">
+        <div className="rounded-4xl border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-10">
           <div className="flex flex-col items-center gap-6 text-center">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#274f75] sm:text-sm">
+              <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
                 Stay Connected
               </p>
 
@@ -403,31 +401,32 @@ export default function LandingPage() {
                 Follow the aroma
               </h2>
 
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#2a3e4c] sm:text-base">
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#e7d3c3] sm:text-base">
                 Get updates, café moments, and more guest-shared photos through
                 the official social pages.
               </p>
             </div>
 
-            <div className="grid w-full max-w-xl gap-3 sm:grid-cols-3">
+            {/* <div className="grid w-full max-w-xl gap-3 sm:grid-cols-3"> */}
+            <div className="flex flex-row justify-center w-full max-w-xl gap-3 ">
+              <SocialButton
+                href="https://www.https://www.tiktok.com/@urbanessentialscafe/"
+                icon={<TikTokIcon />}
+                label="TikTok"
+              />
               <SocialButton
                 href="https://www.instagram.com/urban_essentials_coffeecafe/"
                 icon={<InstagramIcon />}
                 label="Instagram"
               />
               <SocialButton
-                href="https://x.com"
-                icon={<XIcon />}
-                label="X"
-              />
-              <SocialButton
-                href="https://www.facebook.com"
+                href="https://www.facebook.com/UrbanEssentialCoffeeCafe"
                 icon={<FacebookIcon />}
                 label="Facebook"
               />
             </div>
 
-            <p className="text-center text-xs text-[#576a7f]">
+            <p className="text-center text-xs text-[#a89878]">
               © 2026 Spill The Beans. All rights reserved.
             </p>
           </div>
@@ -442,7 +441,7 @@ function LogoMark({ small = false }: { small?: boolean }) {
     <div
       className={`${
         small ? "h-9 w-9 text-[10px]" : "h-11 w-11 text-xs"
-      } flex shrink-0 items-center justify-center rounded-full border border-[#2e74b3]/35 bg-[#c5dee8] font-black leading-none text-[#0b2032] shadow-lg shadow-black/25`}>
+      } flex shrink-0 items-center justify-center rounded-full border border-[#d18b4c]/35 bg-[#d18b4c]/20 font-black leading-none text-[#f4c27e] shadow-lg shadow-black/25`}>
       <span className="text-center">SB</span>
     </div>
   );
@@ -464,16 +463,16 @@ function ReviewRow({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group grid grid-cols-[92px_1fr] items-center gap-4 py-4 transition hover:bg-white/[0.03] sm:grid-cols-[110px_1fr]">
+      className="group grid grid-cols-[92px_1fr] items-center gap-4 py-4 transition hover:bg-white/3 sm:grid-cols-[110px_1fr]">
       <div className={`text-2xl font-black ${accent}`}>{platform}</div>
 
       <div>
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xl font-black text-white">{rating}</span>
-          <span className="tracking-[0.12em] text-[#2e74b3]">★★★★★</span>
+          <span className="tracking-[0.12em] text-[#f4c27e]">★★★★★</span>
         </div>
 
-        <p className="mt-1 text-sm font-semibold text-[#152636] underline decoration-[#2e74b3]/60 underline-offset-4 group-hover:text-white">
+        <p className="mt-1 text-sm font-semibold text-[#e7d3c3] underline decoration-[#d18b4c]/60 underline-offset-4 group-hover:text-white">
           See reviews on {platform} →
         </p>
       </div>
@@ -496,14 +495,14 @@ function InfoRow({
 }) {
   const content = (
     <div className="grid grid-cols-[34px_1fr] gap-3 border-t border-[#274f75]/15 pt-4 first:border-t-0 first:pt-0">
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#2e74b3]/10 text-[#2e74b3]">
+      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#d18b4c]/15 text-[#f4c27e]">
         {icon}
       </div>
 
       <div>
-        <p className="text-sm font-bold text-[#0b2032]">{label}</p>
+        <p className="text-sm font-bold text-[#f4c27e]">{label}</p>
         <p className="mt-1 font-semibold text-white">{value}</p>
-        <p className="text-sm text-[#324757]">{detail}</p>
+        <p className="text-sm text-[#a89878]">{detail}</p>
       </div>
     </div>
   );
@@ -632,10 +631,10 @@ function InstagramIcon() {
   );
 }
 
-function XIcon() {
+function TikTokIcon() {
   return (
     <FontAwesomeIcon
-      icon={faXTwitter}
+      icon={faTiktok}
       className="h-6 w-6"
     />
   );
