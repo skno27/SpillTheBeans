@@ -166,7 +166,7 @@ export default function LandingPage() {
                 Coffee • Cocoa • Culture
               </div>
 
-              <h1 className="max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl shadow-2xl">
                 A coffeehouse that smells like comfort and conversation.
               </h1>
 
