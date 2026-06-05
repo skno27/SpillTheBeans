@@ -1,31 +1,40 @@
 "use client";
 
 import React, { useState, type ReactNode } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faInstagram,
-  faTiktok,
-  faFacebook,
-} from "@fortawesome/free-brands-svg-icons";
+import Image from "next/image";
 
-const BUSINESS = {
-  name: "Spill The Beans",
-  subtitle: "Urban Essentials Coffee Cafe",
-  yelpUrl: "#",
-  googleUrl: "#",
-  directionsUrl: "#",
-  phoneDisplay: "(555) 123-4567",
-  phoneHref: "tel:+15551234567",
-  addressLine1: "123 Main Street",
-  addressLine2: "Anytown, ST 12345",
-  hours: "7:00 AM – 6:00 PM",
-  days: "Everyday",
+import InfoRow from "./utility/InfoRow";
+import ReviewRow from "./utility/ReviewRow";
+import SocialButton from "./utility/SocialButton";
+import {
+  MapPinIcon,
+  PhoneIcon,
+  ClockIcon,
+  ArrowRightIcon,
+  TikTokIcon,
+  InstagramIcon,
+  FacebookIcon,
+} from "./utility/Icons";
+
+import BUSINESS from "./utility/Business";
+
+type LandingPageProps = {
+  onOpenMenu: () => void;
 };
 
-export default function LandingPage() {
+export default function LandingPage({ onOpenMenu }: LandingPageProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+  const [directionsOpen, setDirectionsOpen] = useState(false);
   const closeMobileMenu = () => setMobileMenuOpen(false);
+
+  const encodedAddress = encodeURIComponent(BUSINESS.fullAddress);
+  const encodedName = encodeURIComponent(BUSINESS.name);
+
+  const directionLinks = {
+    apple: `https://maps.apple.com/?q=${encodedName}&address=${encodedAddress}&ll=${BUSINESS.latitude},${BUSINESS.longitude}`,
+    google: `https://www.google.com/maps/dir/?api=1&destination=${encodedAddress}`,
+    waze: `https://waze.com/ul?ll=${BUSINESS.latitude},${BUSINESS.longitude}&navigate=yes`,
+  };
 
   return (
     /* Soft readability overlay only. The real background image comes from page.tsx */
@@ -160,36 +169,40 @@ export default function LandingPage() {
         </div>
 
         <div className="relative mx-auto max-w-7xl px-4 pb-14 pt-24 sm:px-6 md:pb-20 md:pt-8">
-          <div className="grid items-center gap-8 py-10 md:grid-cols-[1.05fr_0.95fr] md:py-20 lg:gap-14">
-            <div>
+          <div
+            id="menus-container"
+            className="grid items-center gap-8 py-10 md:grid-cols-[1.05fr_0.95fr] md:py-20 lg:gap-14">
+            <div className="">
               <div className="mb-5 inline-flex items-center rounded-full border border-[#d18b4c]/30 bg-[#d18b4c]/15 px-4 py-2 text-xs font-semibold text-[#f4c27e] shadow-lg shadow-black/20 backdrop-blur sm:text-sm">
                 Coffee • Cocoa • Culture
               </div>
 
-              <h1 className="max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl shadow-2xl">
-                A coffeehouse that smells like comfort and conversation.
+              <h1 className="max-w-3xl text-4xl font-black leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl ">
+                <span className="text-[#f4c27e] ">Welcome</span> to the smell of
+                comfort.
               </h1>
 
               {/* <p className="mt-6 max-w-2xl text-base leading-7 text-[#1a2b38] sm:text-lg md:text-xl md:leading-8"> */}
               <p className="mt-6 max-w-2xl text-base leading-7 text-[#f4c27e]  sm:text-lg md:text-xl md:leading-8">
-                Spill The Beans is a Black-owned coffee shop rooted in warmth,
-                craft, and community. Come for rich espresso, soft cocoa notes,
-                and a welcoming space made for real conversation.
+                Come for rich espresso, soft cocoa notes, and a welcoming space
+                made for real conversation.
               </p>
 
               <div className="mt-8 grid gap-3 sm:flex sm:flex-wrap ">
-                <a
-                  href={BUSINESS.directionsUrl}
+                <button
+                  type="button"
+                  onClick={() => setDirectionsOpen(true)}
                   className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#d18b4c] px-5 py-3 text-sm font-black text-white shadow-xl shadow-black/30 transition hover:-translate-y-0.5 sm:px-6 sm:text-base">
                   <MapPinIcon />
                   Get Directions
-                </a>
+                </button>
 
-                <a
-                  href="#menu"
-                  className="text-white inline-flex items-center justify-center rounded-2xl border border-[#f4c27e]/50 bg-black/20 px-5 py-3 text-sm font-bold shadow-lg shadow-black/40 backdrop-blur transition hover:bg-[#f4c27e]/10 sm:px-6 sm:text-base">
+                <button
+                  type="button"
+                  onClick={onOpenMenu}
+                  className="inline-flex items-center justify-center rounded-2xl border border-[#d18b4c]/50 bg-black/20 px-5 py-3 text-sm font-bold text-white shadow-lg shadow-black/40 backdrop-blur transition hover:bg-white/10 sm:px-6 sm:text-base">
                   View Menu
-                </a>
+                </button>
                 <a
                   href={BUSINESS.phoneHref}
                   className="inline-flex items-center justify-center gap-2 rounded-2xl px-1 py-3 text-sm font-bold text-[#f4c27e] underline decoration-[#d18b4c] decoration-2 underline-offset-8 transition hover:text-white sm:text-base">
@@ -200,6 +213,61 @@ export default function LandingPage() {
             </div>
 
             <div className="grid gap-4 sm:gap-5">
+              <section
+                id="visit"
+                className="rounded-[1.75rem] border border-white/10 bg-[#080a1e]/80 p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-6">
+                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e]">
+                  Visit today
+                </p>
+
+                <h2 className="mt-2 text-2xl font-black text-white">
+                  Make the stop easy
+                </h2>
+
+                <div className="mt-6 space-y-4">
+                  <InfoRow
+                    icon={<ClockIcon />}
+                    label="Hours"
+                    value={
+                      <ul className="mt-1 space-y-1">
+                        {BUSINESS.hours.map((hours, day) => (
+                          <li
+                            key={day}
+                            className="whitespace-pre text-sm text-white">
+                            <span className="font-semibold text-white">
+                              {BUSINESS.days[day]}:
+                            </span>{" "}
+                            {hours}
+                          </li>
+                        ))}
+                      </ul>
+                    }
+                    detail="Stop by and see us!"
+                  />
+                  <InfoRow
+                    icon={<MapPinIcon />}
+                    label="Address"
+                    value={BUSINESS.addressLine1}
+                    detail={BUSINESS.addressLine2}
+                  />
+                  <InfoRow
+                    icon={<PhoneIcon />}
+                    label="Call"
+                    value={BUSINESS.phoneDisplay}
+                    detail="Tap to call from your phone"
+                    href={BUSINESS.phoneHref}
+                  />
+                </div>
+                <br />
+                <button
+                  type="button"
+                  onClick={() => setDirectionsOpen(true)}
+                  className="inline-flex items-center justify-center gap-2 rounded-2xl bg-[#d18b4c] px-5 py-3 text-sm font-black text-white shadow-xl shadow-black/30 transition hover:-translate-y-0.5 sm:px-6 sm:text-base">
+                  <MapPinIcon />
+                  Get Directions
+                  <ArrowRightIcon />
+                </button>
+              </section>
               <section className="rounded-[1.75rem] border border-white/10 bg-[#080a1e]/80 text-white p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-6">
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -219,64 +287,23 @@ export default function LandingPage() {
                 <div className="mt-6 divide-y divide-[#274f75]/15 border-y border-[#274f75]/15">
                   <ReviewRow
                     platform="Yelp"
-                    rating="4.9"
+                    rating={BUSINESS.socialProof.yelp.yelpRating}
                     url={BUSINESS.yelpUrl}
                     accent="text-[#ff5a5f]"
                   />
                   <ReviewRow
                     platform="Google"
-                    rating="4.8"
+                    rating={BUSINESS.socialProof.google.googleRating}
                     url={BUSINESS.googleUrl}
                     accent="text-[#4285f4]"
                   />
                 </div>
 
-                <p className="mt-5 rounded-2xl border border-[#274f75]/10 bg-white/[0.04] p-4 text-sm leading-6 text-[#e7d3c3]">
+                <p className="mt-5 rounded-2xl border border-[#274f75]/10 bg-white/4 p-4 text-sm leading-6 text-[#e7d3c3]">
                   See what guests are sharing on Yelp and Google — photos,
                   reviews, and neighborhood love, all linked back to the
                   original platforms.
                 </p>
-              </section>
-
-              <section
-                id="visit"
-                className="rounded-[1.75rem] border border-white/10 bg-[#080a1e]/80 p-5 shadow-2xl shadow-black/30 backdrop-blur-md sm:p-6">
-                <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e]">
-                  Visit today
-                </p>
-
-                <h2 className="mt-2 text-2xl font-black text-white">
-                  Make the stop easy
-                </h2>
-
-                <div className="mt-6 space-y-4">
-                  <InfoRow
-                    icon={<ClockIcon />}
-                    label="Hours"
-                    value={BUSINESS.hours}
-                    detail={BUSINESS.days}
-                  />
-                  <InfoRow
-                    icon={<MapPinIcon />}
-                    label="Address"
-                    value={BUSINESS.addressLine1}
-                    detail={BUSINESS.addressLine2}
-                  />
-                  <InfoRow
-                    icon={<PhoneIcon />}
-                    label="Call"
-                    value={BUSINESS.phoneDisplay}
-                    detail="Tap to call from your phone"
-                    href={BUSINESS.phoneHref}
-                  />
-                </div>
-
-                <a
-                  href={BUSINESS.directionsUrl}
-                  className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#d18b4c] px-5 py-3 text-sm font-black text-white transition hover:-translate-y-0.5 sm:w-auto">
-                  Get directions
-                  <ArrowRightIcon />
-                </a>
               </section>
             </div>
           </div>
@@ -284,7 +311,7 @@ export default function LandingPage() {
       </section>
       <section
         id="menu"
-        className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16">
+        className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16 ">
         <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
@@ -296,54 +323,34 @@ export default function LandingPage() {
           </div>
 
           <p className="max-w-2xl text-sm leading-6 sm:text-base text-white">
-            Deep roast aromas, smooth chocolate accents. The kind of menu that
-            makes people stay a little longer.
+            Deep roast aromas, smooth chocolate accents. Something sweet,
+            something savory. The kind of menu that makes people stay a little
+            longer.
           </p>
         </div>
 
-        <div className="grid gap-4 sm:gap-6 md:grid-cols-3">
-          {[
-            {
-              name: "Brown Sugar Cold Brew",
-              price: "$5.75",
-              desc: "Slow-steeped and mellow, finished with a silky brown sugar cream.",
-            },
-            {
-              name: "Cocoa Cinnamon Latte",
-              price: "$6.25",
-              desc: "Espresso layered with steamed milk, dark cocoa, and a warm cinnamon finish.",
-            },
-            {
-              name: "Midnight Mocha Muffin",
-              price: "$4.50",
-              desc: "Soft, rich, and chocolate-forward with a bakery-style crumb.",
-            },
-          ].map((item) => (
-            <div
-              key={item.name}
-              className="rounded-[1.75rem] border border-white/10 bg-[#1b120d]/80 p-5 shadow-xl shadow-black/20 backdrop-blur-md sm:p-6">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <h3 className="text-xl font-black text-white sm:text-2xl">
-                  {item.name}
-                </h3>
-
-                <span className="w-fit rounded-full bg-[#d18b4c] px-3 py-1 text-sm font-black text-white">
-                  {item.price}
-                </span>
-              </div>
-
-              <p className="mt-4 text-sm leading-6 text-[#e7d3c3] sm:text-base sm:leading-7">
-                {item.desc}
-              </p>
-            </div>
-          ))}
+        {/* Menu Display */}
+        <div className="flex justify-center mt-20">
+          <button
+            type="button"
+            onClick={onOpenMenu}
+            className="group w-full flex justify-center">
+            <Image
+              src="/assets/STB/Menu-1.png"
+              alt="Menu display showcasing featured items"
+              width={1200}
+              height={800}
+              className="w-10/12 rounded-2xl border border-white/10 object-cover shadow-lg shadow-black/20"
+              onClick={onOpenMenu}
+            />
+          </button>
         </div>
       </section>
       <section
         id="story"
         className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16">
         <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-[2rem] border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
+          <div className="rounded-4xl border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
               Our Story
             </p>
@@ -362,7 +369,7 @@ export default function LandingPage() {
 
           <div
             id="vibe"
-            className="rounded-[2rem] border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
+            className="rounded-4xl border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
               Atmosphere
             </p>
@@ -377,7 +384,7 @@ export default function LandingPage() {
                 <div
                   key={line}
                   className="flex gap-3 rounded-2xl border border-[#d18b4c]/20 bg-[#d18b4c]/10 p-4">
-                  <div className="mt-1 h-2.5 w-2.5 flex-shrink-0 rounded-full bg-[#d18b4c]" />
+                  <div className="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-[#d18b4c]" />
                   <p className="text-sm leading-6 text-[#e7d3c3] sm:text-base">
                     {line}
                   </p>
@@ -444,207 +451,5 @@ function LogoMark({ small = false }: { small?: boolean }) {
       } flex shrink-0 items-center justify-center rounded-full border border-[#d18b4c]/35 bg-[#d18b4c]/20 font-black leading-none text-[#f4c27e] shadow-lg shadow-black/25`}>
       <span className="text-center">SB</span>
     </div>
-  );
-}
-
-function ReviewRow({
-  platform,
-  rating,
-  url,
-  accent,
-}: {
-  platform: string;
-  rating: string;
-  url: string;
-  accent: string;
-}) {
-  return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group grid grid-cols-[92px_1fr] items-center gap-4 py-4 transition hover:bg-white/3 sm:grid-cols-[110px_1fr]">
-      <div className={`text-2xl font-black ${accent}`}>{platform}</div>
-
-      <div>
-        <div className="flex flex-wrap items-center gap-2">
-          <span className="text-xl font-black text-white">{rating}</span>
-          <span className="tracking-[0.12em] text-[#f4c27e]">★★★★★</span>
-        </div>
-
-        <p className="mt-1 text-sm font-semibold text-[#e7d3c3] underline decoration-[#d18b4c]/60 underline-offset-4 group-hover:text-white">
-          See reviews on {platform} →
-        </p>
-      </div>
-    </a>
-  );
-}
-
-function InfoRow({
-  icon,
-  label,
-  value,
-  detail,
-  href,
-}: {
-  icon: ReactNode;
-  label: string;
-  value: string;
-  detail: string;
-  href?: string;
-}) {
-  const content = (
-    <div className="grid grid-cols-[34px_1fr] gap-3 border-t border-[#274f75]/15 pt-4 first:border-t-0 first:pt-0">
-      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#d18b4c]/15 text-[#f4c27e]">
-        {icon}
-      </div>
-
-      <div>
-        <p className="text-sm font-bold text-[#f4c27e]">{label}</p>
-        <p className="mt-1 font-semibold text-white">{value}</p>
-        <p className="text-sm text-[#a89878]">{detail}</p>
-      </div>
-    </div>
-  );
-
-  if (href) {
-    return (
-      <a
-        href={href}
-        className="block rounded-2xl transition hover:bg-white/3">
-        {content}
-      </a>
-    );
-  }
-
-  return content;
-}
-
-function SocialButton({
-  href,
-  label,
-  icon,
-}: {
-  href: string;
-  label: string;
-  icon: ReactNode;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      // className="text-7xl flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 p-4 text-white transition hover:border-[#2e74b3]/60 hover:bg-[#2e74b3]/10 hover:text-[#2e74b3]"
-      className="text-7xl flex items-center justify-center  text-white transition hover:text-[#2e74b3]"
-      aria-label={label}>
-      {icon}
-    </a>
-  );
-}
-
-function MapPinIcon() {
-  return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.8}
-        d="M12 21s7-4.35 7-11a7 7 0 10-14 0c0 6.65 7 11 7 11z"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.8}
-        d="M12 10.5a2 2 0 100-4 2 2 0 000 4z"
-      />
-    </svg>
-  );
-}
-
-function PhoneIcon() {
-  return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.8}
-        d="M3 5.5C3 4.12 4.12 3 5.5 3h2.1c.5 0 .94.33 1.08.8l.95 3.18a1.3 1.3 0 01-.33 1.3l-1.2 1.2a13.5 13.5 0 006.42 6.42l1.2-1.2a1.3 1.3 0 011.3-.33l3.18.95c.47.14.8.58.8 1.08v2.1A2.5 2.5 0 0118.5 21h-.5C9.72 21 3 14.28 3 6v-.5z"
-      />
-    </svg>
-  );
-}
-
-function ClockIcon() {
-  return (
-    <svg
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.8}
-        d="M12 8v5l3 2"
-      />
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.8}
-        d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
-    </svg>
-  );
-}
-
-function ArrowRightIcon() {
-  return (
-    <svg
-      className="h-4 w-4"
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24">
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={2}
-        d="M5 12h14M13 5l7 7-7 7"
-      />
-    </svg>
-  );
-}
-
-function InstagramIcon() {
-  return (
-    <FontAwesomeIcon
-      icon={faInstagram}
-      className="h-6 w-6"
-    />
-  );
-}
-
-function TikTokIcon() {
-  return (
-    <FontAwesomeIcon
-      icon={faTiktok}
-      className="h-6 w-6"
-    />
-  );
-}
-
-function FacebookIcon() {
-  return (
-    <FontAwesomeIcon
-      icon={faFacebook}
-      className="h-6 w-6"
-    />
   );
 }
