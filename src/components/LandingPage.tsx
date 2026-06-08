@@ -349,25 +349,23 @@ export default function LandingPage({ onOpenMenu }: LandingPageProps) {
       <section
         id="story"
         className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 md:py-16">
-        <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="rounded-4xl border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
+        <div className="flex flex-col gap-10 justify-center md:flex-row md:items-center">
+          <div className="rounded-4xl border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8 flex flex-col text-center">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
               Our Story
             </p>
 
             <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl md:text-4xl">
-              More than a café. A place to gather, create, and exhale.
+              A place to gather, create, and exhale,
             </h2>
 
             <p className="mt-6 max-w-3xl text-base leading-7 text-[#e7d3c3] sm:text-lg sm:leading-8">
               Spill The Beans was imagined as a neighborhood staple with
-              personality — where roasted beans and chocolate feel instantly
-              familiar, and every detail invites people to slow down and
-              connect.
+              personality — every detail invites you to slow down and connect.
             </p>
           </div>
 
-          <div
+          {/* <div
             id="vibe"
             className="rounded-4xl border border-white/10 bg-[#1b120d]/80 p-6 shadow-2xl shadow-black/20 backdrop-blur-md sm:p-8">
             <p className="text-xs font-black uppercase tracking-[0.24em] text-[#f4c27e] sm:text-sm">
@@ -391,7 +389,7 @@ export default function LandingPage({ onOpenMenu }: LandingPageProps) {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
       <section
